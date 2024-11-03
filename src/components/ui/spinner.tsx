@@ -1,8 +1,15 @@
 import React from 'react';
-import { cn } from '@/lib/utils';
 import { VariantProps, cva } from 'class-variance-authority';
 import { Loader2 } from 'lucide-react';
+import clsx, { ClassValue } from 'clsx';
+import { twMerge } from 'tailwind-merge';
 
+// Utility function to merge Tailwind classes with conditional classes
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(...inputs));
+}
+
+// Define spinner variants using class-variance-authority
 const spinnerVariants = cva('flex-col items-center justify-center', {
   variants: {
     show: {
@@ -15,6 +22,7 @@ const spinnerVariants = cva('flex-col items-center justify-center', {
   },
 });
 
+// Define loader variants with size options
 const loaderVariants = cva('animate-spin text-primary', {
   variants: {
     size: {
@@ -28,6 +36,7 @@ const loaderVariants = cva('animate-spin text-primary', {
   },
 });
 
+// Define the Spinner component's props, extending from VariantProps for the variants
 interface SpinnerContentProps
   extends VariantProps<typeof spinnerVariants>,
     VariantProps<typeof loaderVariants> {
@@ -35,10 +44,11 @@ interface SpinnerContentProps
   children?: React.ReactNode;
 }
 
+// Spinner component with conditional visibility and size options
 export function Spinner({ size, show, children, className }: SpinnerContentProps) {
   return (
-    <span className={spinnerVariants({ show })}>
-      <Loader2 className={cn(loaderVariants({ size }), className)} />
+    <span className={cn(spinnerVariants({ show }), className)}>
+      <Loader2 className={cn(loaderVariants({ size }))} />
       {children}
     </span>
   );
