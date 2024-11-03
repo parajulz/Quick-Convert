@@ -16,7 +16,7 @@ export const Dropzone: React.FC<DropzoneProps> = ({ files, setFiles }) => {
   });
 
   return (
-    <div className="h-64 w-64 rounded-lg border-2 border-gray-300 border-dashed p-2">
+    <div className="dropzone">
       <div {...getRootProps()}>
         <input {...getInputProps()} />
         <div className="text-center">Drop files here or click to select files</div>

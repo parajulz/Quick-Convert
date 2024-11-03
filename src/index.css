@@ -1,68 +1,183 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap');
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
+  /* Font settings */
+  font-family: 'Poppins', system-ui, Avenir, Helvetica, Arial, sans-serif;
   font-weight: 400;
+  line-height: 1.6;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  /* Theme colors */
+  --primary-color: #ff4d94; /* Bold pink for primary elements */
+  --secondary-color: #ff85b3; /* Soft pink for secondary elements */
+  --accent-color: #ff6b6b; /* Accent color for highlights */
+  --dark-pink: #ff1e64; /* Dark pink for dotted border */
+  --background-light: #ffe6f2; /* Light pink background */
+  --foreground-light: #212529; /* Dark text for light background */
 
+  /* Effects */
+  --border-radius: 12px;
+  --shadow-color: rgba(255, 30, 100, 0.4); /* Soft shadow with dark pink tint */
+
+  /* Typography */
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
 body {
   margin: 0;
   display: flex;
-  place-items: center;
+  justify-content: center;
+  align-items: center;
   min-width: 320px;
   min-height: 100vh;
+  background: linear-gradient(135deg, var(--background-light), #ffccd5);
+  color: var(--foreground-light);
+  font-family: var(--font-family);
+  transition: background 0.3s, color 0.3s;
 }
 
 h1 {
-  font-size: 3.2em;
+  font-size: 3.5em;
+  font-weight: 800; /* Bold font for emphasis */
   line-height: 1.1;
+  text-align: center;
+  color: var(--primary-color); /* Ensure "Quick Convert" is in pink */
+  text-shadow: 2px 4px 10px var(--shadow-color);
+  margin-bottom: 1rem;
+  animation: bounce-in 0.8s ease forwards;
+}
+
+p {
+  max-width: 600px;
+  text-align: center;
+  font-size: 1.2em;
+  color: var(--foreground-light);
+}
+
+a {
+  font-weight: 600;
+  color: var(--accent-color);
+  text-decoration: none;
+  transition: color 0.3s, transform 0.3s;
+}
+
+a:hover {
+  color: var(--primary-color);
+  transform: scale(1.05);
 }
 
 button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
+  border-radius: var(--border-radius);
+  border: 2px solid var(--primary-color);
+  padding: 0.8em 1.6em;
+  font-size: 1.1em;
+  font-weight: 600;
   font-family: inherit;
-  background-color: #1a1a1a;
+  background-color: transparent;
+  color: var(--primary-color);
   cursor: pointer;
-  transition: border-color 0.25s;
+  transition: background-color 0.3s, color 0.3s, transform 0.2s;
+  box-shadow: 0px 4px 12px var(--shadow-color);
 }
+
 button:hover {
-  border-color: #646cff;
+  background-color: var(--primary-color);
+  color: white;
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0px 6px 16px var(--shadow-color);
 }
+
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
+.dropzone {
+  border: 3px dotted #ff1e64 !important; /* Explicitly set dark pink with !important */
+  border-radius: var(--border-radius);
+  padding: 2rem;
+  text-align: center;
+  font-size: 1.2em;
+  font-weight: 600;
+  color: #ff1e64 !important; /* Explicit dark pink for text with !important */
+  background-color: #ffeef8; /* Light pink background for drop zone */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s, border-color 0.3s;
+  cursor: pointer;
+  box-shadow: inset 0px 4px 8px rgba(255, 30, 100, 0.1); /* Soft inner shadow */
+  animation: pulse 1.5s infinite; /* Pulsing animation */
+}
+
+.dropzone:hover {
+  background-color: #ffdde6;
+  border-color: #ff6b6b !important;
+}
+
+.dropzone p {
+  margin: 0;
+  font-weight: 700; /* Bold text for better readability */
+  font-size: 1.2em; /* Slightly larger font */
+  color: #ff1e64 !important; /* Explicit dark pink for text with !important */
+}
+
 @media (prefers-color-scheme: light) {
   :root {
-    color: #213547;
-    background-color: #ffffff;
+    color: var(--foreground-light);
+    background-color: var(--background-light);
   }
-  a:hover {
-    color: #747bff;
+  body {
+    background: linear-gradient(135deg, var(--background-light), #ffccd5);
+  }
+  h1 {
+    color: var(--primary-color);
   }
   button {
-    background-color: #f9f9f9;
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+  }
+}
+
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2.5em;
+  }
+  p {
+    font-size: 1em;
+  }
+  button {
+    font-size: 1em;
+    padding: 0.6em 1.2em;
+  }
+  .dropzone {
+    font-size: 1em;
+    padding: 1.5rem;
+  }
+}
+
+/* Animations */
+@keyframes bounce-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  80% {
+    transform: scale(1.1);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    box-shadow: inset 0px 4px 8px rgba(255, 30, 100, 0.1);
+  }
+  50% {
+    box-shadow: inset 0px 4px 12px rgba(255, 30, 100, 0.2);
   }
 }
