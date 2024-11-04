@@ -88,7 +88,7 @@ const convertFile = async (file, ffmpegRef, outputFormat) => {
 };
 ```
 
-## Project Requirements
+## Conversion Process
 
 - **File Input and Display**:
   - Users can add, view, and manage multiple files for conversion.
